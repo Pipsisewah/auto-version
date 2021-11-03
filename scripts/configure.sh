@@ -1,6 +1,21 @@
 #!/usr/bin/env bash
 echo 'Configuring Installation'
-if [ ! -d "../../node_modules" ]; then echo "Not installed as a dependency" && exit 0; fi
+
+create_commit_message_configuration() {
+  pwd
+  FILENAME=".husky/commit-msg";
+  > $FILENAME;
+  echo "#!/bin/sh" >> $FILENAME;
+  echo '. "$(dirname "$0")/_/husky.sh\"' >> $FILENAME;
+  echo "npx --no-install commitlint --edit " >> $FILENAME;
+}
+
+if [ ! -d "../../node_modules" ]; then
+  echo "Not installed as a dependency";
+  npx husky install
+  create_commit_message_configuration
+  exit 0;
+fi
 
 # Copy default commitlint config if it does not already exist
 echo "Creating default commitlint.config.js file"
@@ -16,4 +31,4 @@ cp -n -R .github ../../.github
 
 cd ../..
 npx husky install
-npx husky add .husky/commit-msg 'npx --no-install commitlint --edit $1'
+create_commit_message_configuration
