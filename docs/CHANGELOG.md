@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Pipsisewah/auto-version/compare/v1.0.0...v1.0.1) (2021-11-03)
+
+
+### Bug Fixes
+
+* fixed install and config of husky ([58fbaad](https://github.com/Pipsisewah/auto-version/commit/58fbaadac51b5675b466a6fb9cde0c3ab6f66b09))
+
 # 1.0.0 (2021-11-03)
 
 
